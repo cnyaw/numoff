@@ -1,0 +1,15 @@
+script _rain
+  changey(0,-200)
+  repeat(-1)
+    fire(rain)
+    sleep(0.02)
+  end
+end
+
+script rain
+  changespeed(0,rand(60,180))
+  changedirection(0,90)  
+  changex(0,rand(-250,250),add)
+  changex(20,rand(-250,250),add)
+  sleep(20)
+end
