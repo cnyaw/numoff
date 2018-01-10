@@ -16,6 +16,7 @@ local tick
 local timer = 0
 local otimer
 local olv
+local dark
 
 function saveGame()
   if (practice_mode) then
@@ -116,6 +117,17 @@ function Game.OnCreate(param)
   olv = GenLevelStrObj()
 end
 
+function OnStepPause(param)
+  if (Input.IsKeyPushed(Input.ESCAPE)) then
+    level = 2
+    Good.GenObj(-1, 6)                  -- Title.
+    Game.OnStep = OnStepDefault
+  elseif (Input.IsKeyPushed(Input.LBUTTON)) then
+    Good.KillObj(dark)
+    Game.OnStep = OnStepDefault         -- Continue.
+  end
+end
+
 function OnStepDefault(param)
   if (curr_index == N + 1 or 0 == timer) then
     return
@@ -126,6 +138,11 @@ function OnStepDefault(param)
       level = 2
       timer = 0
       Good.GenObj(-1, 6)                  -- Title.
+    else
+      dark = GenColorObj(-1, SW, SH, 0xFE000000)
+      local s = GenTexObj(dark, 27, 84, 31)
+      Good.SetPos(s, (SW - 82)/2, 220)
+      Game.OnStep = OnStepPause
     end
     return
   end
