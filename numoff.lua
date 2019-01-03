@@ -68,6 +68,26 @@ function GenLevelStrObj()
   return GenStrObj(-1, SW - 16 * string.len(slv) - 5, SH - 40, slv)
 end
 
+function GenNumBlockObj(i, dx, dy)
+  local row = math.floor(i / level)
+  local col = i % level
+  local color
+  if (0 == ((col + row) % 2)) then
+    color = 0xFFFFECD6
+  else
+    color = 0xFFFFE9DD
+  end
+  local o = GenColorObj(-1, dx - 1, dy - 1, color)
+  local x = OFFSET_X + col * dx
+  local y = OFFSET_Y + row * dy
+  local str = tostring(index[i])
+  Good.SetPos(o, x, y)
+  local sx = (dx - string.len(str) * 16) / 2
+  local sy = (dy - 32) / 2
+  local s = GenStrObj(o, sx, sy, str, nil, nil, nil, 0xffff0000)
+  return o
+end
+
 function Game.OnCreate(param)
   param.p = nil
   N = level * level
@@ -91,23 +111,7 @@ function Game.OnCreate(param)
   end
 
   for i = 0, N - 1 do
-    local row = math.floor(i / level)
-    local col = i % level
-    local color
-    if (0 == ((col + row) % 2)) then
-      color = 0xFFFFECD6
-    else
-      color = 0xFFFFE9DD
-    end
-    local o = GenColorObj(-1, dx - 1, dy - 1, color)
-    local x = OFFSET_X + col * dx
-    local y = OFFSET_Y + row * dy
-    local str = tostring(index[i])
-    Good.SetPos(o, x, y)
-    local sx = (dx - string.len(str) * 16) / 2
-    local sy = (dy - 32) / 2
-    local s = GenStrObj(o, sx, sy, str, nil, nil, nil, 0xffff0000)
-    map[i] = o
+    map[i] = GenNumBlockObj(i, dx, dy)
   end
 
   tick = 60
