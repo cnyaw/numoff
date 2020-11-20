@@ -120,37 +120,44 @@ objects=7 9 12 16 18 28 33
 texture=0
 repX=1
 repY=1
+dim=0 0 300 259
 
 [object9]
 texture=8
 x=16
 y=64
+dim=0 0 372 95
 
 [object12]
 texture=11
 x=144
 y=272
 script=Flicker
+dim=0 0 121 17
 
 [object16]
 texture=15
 x=112
 y=368
+dim=0 0 177 15
 
 [object18]
 texture=17
 x=288
 y=128
+dim=0 0 100 63
 
 [object28]
 texture=4
 x=64
 y=224
+dim=0 0 75 65
 
 [object33]
 texture=32
 x=304
 y=240
+dim=0 0 64 64
 
 [level2]
 name=game
@@ -161,4 +168,5 @@ objects=5
 texture=0
 repX=1
 repY=1
+dim=0 0 300 259
 
