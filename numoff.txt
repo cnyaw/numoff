@@ -8,12 +8,12 @@ sprites=23 24 25
 levels=6 2
 
 [scripts]
-3=./numoff.lua
-10=./title.lua
+3=./script/numoff.lua
+10=./script/title.lua
 26=../good/samples/Util.lua
 
 [stges]
-22=./p.stge
+22=./script/p.stge
 
 [snd19]
 fileName=./res/whistleblow.ogg
